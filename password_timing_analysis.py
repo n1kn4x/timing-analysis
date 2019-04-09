@@ -22,6 +22,7 @@ class Timea:
                 char_collection = list(string.digits+string.ascii_letters),
                 decision_metric = "mean",
                 decision_rule = "max",
+                gmm_thresh = 0.9,
                 percentile = 3
                 ):
 
@@ -38,6 +39,7 @@ class Timea:
         self.char_collection = char_collection
         self.decision_metric = decision_metric
         self.decision_rule = decision_rule
+        self.thresh = gmm_thresh
         self.percentile = percentile
 
         ga.num_queries = self.queries
@@ -95,13 +97,11 @@ class Timea:
 
     def get_best_char(self, measurements):
         data = self.analyze(measurements)
-        if data is None:
-            return ""
         try:
             decision = self.decide(data)
         except:
             return ""
-        if self.decision_metric=="gmm" and data[decision] < 0.9:
+        if self.decision_metric=="gmm" and data[decision] < self.thresh:
             return ""
         print(decision, data[decision])
         return decision
