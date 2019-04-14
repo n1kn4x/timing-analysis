@@ -1,6 +1,6 @@
 # timing-analysis
 
-Make timing measurements and use this API to make timing analysis.
+An API to make sophistacted timing analysis using Gaussian Mixture Models, among others.
 
 Example usage script:
 ```
@@ -16,7 +16,7 @@ def str_compare(str1, str2):
 # This query function must be implemented by the user and provided to Timea constructor.
 def example_queryf(candidate):
     t1 = time.process_time()
-    str_compare3(candidate, PW)
+    str_compare(candidate, PW)
     t2 = time.process_time()
     return (t2 - t1) * 10**9
 
