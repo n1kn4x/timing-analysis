@@ -1,7 +1,10 @@
 import numpy as np
 import pandas as pd
-from sklearn.mixture import GaussianMixture
 from sklearn.mixture import BayesianGaussianMixture
+"""
+    This file provides functionality for Gaussiam Mixture Modelling.
+    It is uses as a utility file for password_timing_analysis.py.
+"""
 
 num_queries = None
 g = BayesianGaussianMixture(n_components=2,

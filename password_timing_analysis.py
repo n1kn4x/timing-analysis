@@ -8,7 +8,13 @@ import gmm_analysis as ga
 
 
 """
-    fill_char must not be in alphabet.
+    This file serves as an API for timing analysis.
+    The user must implement a function that perform the timing-critical
+    task an return the amount it time it took (for example using
+    time.process_time()).
+
+    Notes:
+        fill_char must not be in alphabet.
 """
 
 class Timea:
@@ -39,7 +45,7 @@ class Timea:
         self.char_collection = char_collection
         self.decision_metric = decision_metric
         self.decision_rule = decision_rule
-        self.thresh = gmm_thresh
+        self.gmm_thresh = gmm_thresh
         self.percentile = percentile
 
         ga.num_queries = self.queries
@@ -101,12 +107,13 @@ class Timea:
             decision = self.decide(data)
         except:
             return ""
-        if self.decision_metric=="gmm" and data[decision] < self.thresh:
+        if self.decision_metric=="gmm" and data[decision] < self.gmm_thresh:
             return ""
-        print(decision, data[decision])
+        print("-> Selecting next char: %s - probability: %.2f"%(decision, data[decision]))
         return decision
 
     def run(self):
+        print("********** Starting Timing Analysis **********")
         prefix = self.prefix
 
         while (len(prefix) < self.length):
@@ -115,5 +122,6 @@ class Timea:
             next_char = self.get_best_char(measurements)
             prefix = prefix + next_char
             if next_char == "":
+                print("----- No char scored over %f: Removing last char and measuring again! -----" % self.gmm_thresh)
                 prefix = prefix[:-1]
-            print(prefix)
+            print("-> Current password: %s" % prefix)
