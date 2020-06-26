@@ -20,7 +20,7 @@ def example_queryf(candidate):
     t2 = time.process_time()
     return (t2 - t1) * 10**9
 
-# Create Timea object - provice timing query function and length of password (when to stop).
+# Create Timea object - provide timing query function and length of password (when to stop).
 timea = password_timing_analysis.Timea(example_queryf, len(PW), decision_metric="gmm", decision_rule="max", queries=500)
 
 timea.run()
