@@ -1,6 +1,7 @@
 # timing-analysis
 
 An API to make sophistacted timing analysis using Gaussian Mixture Models, among others.
+Blog entry: https://parzelsec.de/static/timing-attacks-with-machine-learning/index.html
 
 Example usage script:
 ```
